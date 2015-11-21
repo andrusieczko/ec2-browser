@@ -13,12 +13,42 @@
         <div class="toolbar-actions">
           <button class="btn btn-default btn-large" onclick="newWindow()">
             <span class="icon icon-popup icon-text"></span>
-            Open
+            Load AWS EC2 settings
           </button>
         </div>
       </header>
 
-      <div id="content"></div>
+      <div class="window-content">
+      <div class="pane-group">
+        <div class="pane-sm sidebar">
+          
+          <ul class="list-group">
+            <li class="list-group-header">
+              <h4>Regions</h4>
+            </li>
+            <li class="list-group-item">
+              <img class="img-circle media-object pull-left" src="http://media.amazonwebservices.com/aws_singlebox_01.png" width="32" height="32">
+              <div class="media-body">
+                <strong>EU (Ireland)</strong>
+                <p>0 running</p>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <img class="img-circle media-object pull-left" src="http://media.amazonwebservices.com/aws_singlebox_01.png" width="32" height="32">
+              <div class="media-body">
+                <strong>US West (N. Carolina)</strong>
+                <p>2 running</p>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+        <div class="pane">
+          <div id="content"></div>
+        </div>
+      </div>
+      </div>
+      
       
     </div>
   </body>
@@ -27,5 +57,5 @@
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-  <script type="text/babel" src="src/ec2.js"></script>
+  <script type="text/babel" src="src/js/ec2.js"></script>
 </html>
