@@ -1,0 +1,35 @@
+{
+  "name": "ec2-browser",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom/electron-quick-start.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atom/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.34.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.2.18",
+    "electron-reload": "^0.2.0",
+    "photon": "git://github.com/connors/photon.git",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
+}
