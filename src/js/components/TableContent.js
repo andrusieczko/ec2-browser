@@ -2,27 +2,10 @@ import ec2 from 'services/ec2';
 import TableRow from 'components/TableRow';
 
 let TableContent = React.createClass({
-    getInitialState: function() {
-    return {
-      data: [],
-      loading: true
-    };
-  },
-
-  componentDidMount: function() {
-    let component = this;
-    ec2.fetchInstances().then((instances) => {
-      component.setState({
-        data: instances,
-        loading: false
-      });
-    });
-  },
-
   render: function() {
-    let instancesRows = this.state.data.map((instance) => {
+    let instancesRows = this.props.data.map((instance) => {
       return (
-        <TableRow key={instance.id} instance={instance} />
+        <TableRow key={instance.id} instance={instance} columns={this.props.columns} />
       );
     });
     let emptyRow = (
@@ -35,7 +18,7 @@ let TableContent = React.createClass({
         <td colSpan="4">Loading...</td>
       </tr>
     );
-    let body = this.state.loading ? loading : instancesRows.length ? instancesRows : emptyRow;
+    let body = this.props.loading ? loading : instancesRows.length ? instancesRows : emptyRow;
     return (
       <tbody>
         {body}

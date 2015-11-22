@@ -5,8 +5,10 @@ let Table = React.createClass({
   render: function() {
     return (
       <table>
-        <TableHeader />
-        <TableContent />
+        <TableHeader columns={this.props.columns} />
+        <TableContent data={this.props.data} 
+                      columns={this.props.columns}
+                      loading={this.props.loading}/>
       </table>
     );
   }
