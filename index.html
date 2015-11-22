@@ -52,10 +52,13 @@
       
     </div>
   </body>
-  <!-- <script src="src/ec2.js"></script> -->
   <script src="node_modules/react/dist/react.js"></script>
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-  <script type="text/babel" src="src/js/ec2.js"></script>
+  <!-- a hack to distinguish between node's require and browser require,
+       look at: https://github.com/atom/electron/issues/1611 -->
+  <script>var electronRequire = require;</script>
+
+  <script  src="build/app.js"></script>
 </html>

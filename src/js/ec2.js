@@ -1,8 +1,8 @@
 "use strict";
 
-let aws = require('./aws-config.json');
+let aws = electronRequire('./aws-config.json');
 
-var AWS = require('aws-sdk'); 
+var AWS = electronRequire('aws-sdk'); 
 AWS.config.update(aws);
 var ec2 = new AWS.EC2({region: 'eu-west-1'}); 
 
@@ -32,18 +32,7 @@ let ec2Instances = {
   }
 };
 
-let TableRow = React.createClass({
-  render: function() {
-    let instance = this.props.instance;
-    return (
-      <tr>
-        <td>{instance.keyName}</td>
-        <td>{instance.status}</td>
-        <td>{instance.instanceType}</td>
-      </tr>
-    );
-  }
-});
+let TableRow = require('./components/TableRow').default;
 
 let TableHeader = React.createClass({
   render: function() {
