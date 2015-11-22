@@ -1,6 +1,6 @@
-import PageContent from 'components/PageContent';
+import Window from 'components/Window';
 
 ReactDOM.render(
-  <PageContent />,
-  document.getElementById('content')
+  <Window />,
+  document.getElementById('window-content')
 );
