@@ -1,4 +1,4 @@
-export default React.createClass({
+let TableRow = React.createClass({
   render: function() {
     let instance = this.props.instance;
     return (
@@ -10,3 +10,5 @@ export default React.createClass({
     );
   }
 });
+
+export default TableRow;
