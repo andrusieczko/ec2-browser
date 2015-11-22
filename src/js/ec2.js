@@ -59,8 +59,8 @@ let TableHeader = React.createClass({
   }
 });
 
-let Table = React.createClass({
-  getInitialState: function() {
+let TableContent = React.createClass({
+    getInitialState: function() {
     return {
       data: [],
       loading: true
@@ -95,11 +95,19 @@ let Table = React.createClass({
     );
     let body = this.state.loading ? loading : instancesRows.length ? instancesRows : emptyRow;
     return (
+      <tbody>
+        {body}
+      </tbody>
+    );
+  }
+});
+
+let Table = React.createClass({
+  render: function() {
+    return (
       <table>
         <TableHeader />
-        <tbody>
-          {body}
-        </tbody>
+        <TableContent />
       </table>
     );
   }
