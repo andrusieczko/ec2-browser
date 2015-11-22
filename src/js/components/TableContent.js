@@ -1,6 +1,5 @@
-let ec2Instances = require('../services/ec2').default;
-
-let TableRow = require('./TableRow').default;
+import ec2 from 'services/ec2';
+import TableRow from 'components/TableRow';
 
 let TableContent = React.createClass({
     getInitialState: function() {
@@ -12,7 +11,7 @@ let TableContent = React.createClass({
 
   componentDidMount: function() {
     let component = this;
-    ec2Instances.fetchInstances().then((instances) => {
+    ec2.fetchInstances().then((instances) => {
       component.setState({
         data: instances,
         loading: false

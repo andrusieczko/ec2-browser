@@ -11,9 +11,14 @@ gulp.task('browserify', function() {
         debug: true, // Gives us sourcemapping
         cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
     })
-    .transform("babelify", {presets: ["es2015", "react"]})
-    .transform(reactify)
-    ;
+    .transform("babelify", {
+        presets: ["es2015", "react"],
+        moduleRoot: "./src/js/",
+        resolveModuleSource: function(source, filename) {
+            return filename.slice(0, filename.indexOf('src/js')) + 'src/js/' + source;;
+        }
+    })
+    .transform(reactify);
 
     var watcher  = watchify(bundler);
 

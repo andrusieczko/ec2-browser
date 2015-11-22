@@ -1,6 +1,4 @@
-// let PageContent = require('./components/PageContent').default;
-
-import PageContent from './components/PageContent';
+import PageContent from 'components/PageContent';
 
 ReactDOM.render(
   <PageContent />,

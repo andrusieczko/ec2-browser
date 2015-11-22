@@ -1,5 +1,3 @@
-'use strict';
-
 let aws = electronRequire('./aws-config.json');
 
 var AWS = electronRequire('aws-sdk'); 

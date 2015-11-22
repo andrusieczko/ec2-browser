@@ -1,4 +1,4 @@
-let Table = require('./Table').default;
+import Table from 'components/Table';
 
 let PageContent = React.createClass({
   render: function() {

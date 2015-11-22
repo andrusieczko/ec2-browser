@@ -1,5 +1,5 @@
-let TableHeader = require('./TableHeader').default;
-let TableContent = require('./TableContent').default;
+import TableHeader from 'components/TableHeader';
+import TableContent from 'components/TableContent';
 
 let Table = React.createClass({
   render: function() {
