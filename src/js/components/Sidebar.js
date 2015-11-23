@@ -1,4 +1,5 @@
 import dispatcher from 'dispatcher';
+import AddRegion from 'components/AddRegion';
 let classNames = require('classnames');
 
 let Sidebar = React.createClass({
@@ -14,6 +15,12 @@ let Sidebar = React.createClass({
     return {
       region: 'eu-west-1'
     };
+  },
+
+  componentDidMount: function() {
+    dispatcher.register('regionAdded', function(region) {
+      this.regionSelected(region);
+    }.bind(this));
   },
 
   regionSelected: function(region) {
@@ -48,6 +55,7 @@ let Sidebar = React.createClass({
       <ul className="list-group">
         <li className="list-group-header">
           <h4>Regions</h4>
+          <AddRegion />
         </li>
         {regions}
       </ul>

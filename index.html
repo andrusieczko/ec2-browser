@@ -1,8 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>EC2 browser</title>
     <link rel="stylesheet" href="node_modules/photon/dist/css/photon.css">
+    <style>
+      .sidebar .add-button {
+        position: absolute;
+        top: 1em;
+        left: 155px;
+        background: mediumseagreen;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 20px;
+        padding: 1px 8px;
+      }
+      .regions-list {
+        display: none;
+        position: absolute;
+        top: 27px;
+        left: 171px;
+        z-index: 100;
+        background-color: white;
+        padding: 10px;
+        border: 1px black solid;
+        border-radius: 20px;
+      }
+      .regions-list > li:hover {
+        background-color: #116CD6;
+        color: white;
+        cursor: pointer;
+      }
+      .regions-list > li > a:hover {
+        cursor: pointer;
+      }
+      .regions-list.visible {
+        display: block;
+      }
+    </style>
   </head>
 
   <body>
