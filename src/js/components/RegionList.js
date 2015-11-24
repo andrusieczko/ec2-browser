@@ -12,7 +12,7 @@ let RegionList = React.createClass({
     let regions = this.props.regions.map((region) => {
       return (
         <li key={region.key}>
-          <a onClick={this.regionChosen.bind(this, region.key)}>{region.name}</a>
+          <a onClick={this.regionChosen.bind(this, region)}>{region.name}</a>
         </li>
       );
     });

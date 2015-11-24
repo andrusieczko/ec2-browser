@@ -21,18 +21,24 @@ let AddRegion = React.createClass({
   },
 
   addRegion: function(e) {
-    let component = this;
-    this.setState({
-      loading: true,
-      listVisible: true
-    });
-    ec2.fetchRegions().then(function(regions) {
-      component.setState({
-        listVisible: true,
-        data: regions,
-        loading: false
+    if (this.state.data.length) {
+      this.setState({
+        listVisible: true
       });
-    });
+    } else {
+      let component = this;
+      this.setState({
+        loading: true,
+        listVisible: true
+      });
+      ec2.fetchRegions().then(function(regions) {
+        component.setState({
+          listVisible: true,
+          data: regions,
+          loading: false
+        });
+      });
+    }
   },
 
   render: function() {

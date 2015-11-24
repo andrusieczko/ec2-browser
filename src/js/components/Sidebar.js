@@ -2,24 +2,27 @@ import dispatcher from 'dispatcher';
 import AddRegion from 'components/AddRegion';
 let classNames = require('classnames');
 
+const remote = electronRequire('electron').remote;
+const Menu = remote.Menu;
+const MenuItem = remote.MenuItem;
+
 let Sidebar = React.createClass({
-  regions: [{
-    key: 'eu-west-1',
-    name: "EU (Ireland)"
-  }, {
-    key: 'us-west-2',
-    name: "US West (N. Carolina)"
-  }],
+  contextMenu: null,
 
   getInitialState: function() {
     return {
-      region: 'eu-west-1'
+      region: 'eu-west-1',
+      regions: JSON.parse(window.localStorage.getItem('regions') || "[]")
     };
   },
 
   componentDidMount: function() {
     dispatcher.register('regionAdded', function(region) {
-      this.regionSelected(region);
+      this.state.regions.push(region);
+      this.setState({
+        regions: this.state.regions
+      });
+      window.localStorage.setItem('regions', JSON.stringify(this.state.regions));
     }.bind(this));
   },
 
@@ -30,6 +33,15 @@ let Sidebar = React.createClass({
     dispatcher.notifyAll('region', region);
   },
 
+  removeRegion: function(region) {
+    let index = this.state.regions.indexOf(region);
+    this.state.regions.splice(index, 1);
+    this.setState({
+      regions: this.state.regions
+    });
+    window.localStorage.setItem('regions', JSON.stringify(this.state.regions));
+  },
+
   isActive: function(region) {
     if (region === this.state.region) {
       return "active"
@@ -37,11 +49,21 @@ let Sidebar = React.createClass({
     return "";
   },
 
+  onContextMenu: function(region) {
+    let component = this;
+    var menu = new Menu();
+    menu.append(new MenuItem({ label: 'Remove', click: function() {
+      component.removeRegion(region);
+    }}));
+    menu.popup(remote.getCurrentWindow());
+  },
+
   render: function() {
-    let regions = this.regions.map((region) => {
+    let regions = this.state.regions.map((region) => {
       return (
-        <li key={region.key} 
-            className={classNames("list-group-item", this.isActive(region.key))} 
+        <li key={region.key}
+            className={classNames("list-group-item", "region", this.isActive(region.key))} 
+            onContextMenu={this.onContextMenu.bind(this, region)}
             onClick={this.regionSelected.bind(this, region.key)}>
           <img className="img-circle media-object pull-left" src="http://media.amazonwebservices.com/aws_singlebox_01.png" width="32" height="32" />
           <div className="media-body">
