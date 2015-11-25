@@ -2,7 +2,7 @@ import dispatcher from 'dispatcher';
 import AddRegion from 'components/AddRegion';
 let classNames = require('classnames');
 
-const remote = electronRequire('electron').remote;
+const remote = electronRequire('remote');
 const Menu = remote.Menu;
 const MenuItem = remote.MenuItem;
 
