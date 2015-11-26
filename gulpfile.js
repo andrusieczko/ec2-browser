@@ -4,6 +4,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify'); 
 var concat = require('gulp-concat');
+var eslint = require('gulp-eslint');
  
 gulp.task('browserify', function() {
     var bundler = browserify({
@@ -37,7 +38,17 @@ gulp.task('browserify', function() {
     })
     .bundle() // Create the initial bundle when starting the task
     .pipe(source('app.js'))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
     .pipe(gulp.dest('build/'));
+});
+
+gulp.task('lint', function () {
+    return gulp.src(['**/*.js','!node_modules/**','!build/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
 
 // I added this so that you see how to run two watch tasks

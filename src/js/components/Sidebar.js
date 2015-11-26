@@ -44,7 +44,7 @@ let Sidebar = React.createClass({
 
   isActive: function(region) {
     if (region === this.state.region) {
-      return "active"
+      return "active";
     };
     return "";
   },

@@ -49,7 +49,7 @@ let Ec2Instances = React.createClass({
   },
 
   changeRegion: function(e) {
-    let region = e.target.value
+    let region = e.target.value;
     this.setState({
       region: region,
       loading: true

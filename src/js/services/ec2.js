@@ -5,7 +5,7 @@ AWS.config.update(aws);
 
 let getEc2 = function(region='eu-west-1') {
   return new AWS.EC2({region: region});
-}
+};
 
 let regionNames = {
   'us-east-1': "US East (N. Virginia)",
@@ -39,7 +39,7 @@ let ec2Instances = {
             }),
             publicIpAddress: instance.PublicIpAddress,
             id: instance.InstanceId
-          }
+          };
         });
         resolve(instances);
       });

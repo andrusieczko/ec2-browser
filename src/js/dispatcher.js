@@ -1,3 +1,5 @@
+'use scrict';
+
 let _listeners = {};
 
 let Dispatcher = function() {};
