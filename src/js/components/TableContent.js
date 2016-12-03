@@ -2,8 +2,8 @@ import ec2 from 'services/ec2';
 import TableRow from 'components/TableRow';
 
 let TableContent = React.createClass({
-  render: function() {
-    let instancesRows = this.props.data.map((instance) => {
+  render() {
+    let instancesRows = this.props.data.map(instance => {
       return (
         <TableRow key={instance.id} instance={instance} columns={this.props.columns} />
       );

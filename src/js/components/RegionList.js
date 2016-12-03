@@ -2,14 +2,14 @@ import dispatcher from 'dispatcher';
 let classNames = require('classnames');
 
 let RegionList = React.createClass({
-  regionChosen: function(region) {
+  regionChosen(region) {
     dispatcher.notifyAll('regionAdded', region);
   },
-  render: function() {
+  render() {
     let loading =  (
       <li>Loading</li>
     );
-    let regions = this.props.regions.map((region) => {
+    let regions = this.props.regions.map(region => {
       return (
         <li key={region.key}>
           <a onClick={this.regionChosen.bind(this, region)}>{region.name}</a>

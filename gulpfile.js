@@ -38,7 +38,7 @@ gulp.task('browserify', function() {
     })
     .bundle() // Create the initial bundle when starting the task
     .pipe(source('app.js'))
-    .pipe(eslint())
+    .pipe(eslint({fix:true}))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(gulp.dest('build/'));

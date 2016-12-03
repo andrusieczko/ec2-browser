@@ -9,14 +9,14 @@ const MenuItem = remote.MenuItem;
 let Sidebar = React.createClass({
   contextMenu: null,
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       region: 'eu-west-1',
       regions: JSON.parse(window.localStorage.getItem('regions') || "[]")
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     dispatcher.register('regionAdded', function(region) {
       this.state.regions.push(region);
       this.setState({
@@ -26,14 +26,14 @@ let Sidebar = React.createClass({
     }.bind(this));
   },
 
-  regionSelected: function(region) {
+  regionSelected(region) {
     this.setState({
       region: region
     });
     dispatcher.notifyAll('region', region);
   },
 
-  removeRegion: function(region) {
+  removeRegion(region) {
     let index = this.state.regions.indexOf(region);
     this.state.regions.splice(index, 1);
     this.setState({
@@ -42,14 +42,14 @@ let Sidebar = React.createClass({
     window.localStorage.setItem('regions', JSON.stringify(this.state.regions));
   },
 
-  isActive: function(region) {
+  isActive(region) {
     if (region === this.state.region) {
       return "active";
     };
     return "";
   },
 
-  onContextMenu: function(region) {
+  onContextMenu(region) {
     let component = this;
     var menu = new Menu();
     menu.append(new MenuItem({ label: 'Remove', click: function() {
@@ -58,8 +58,8 @@ let Sidebar = React.createClass({
     menu.popup(remote.getCurrentWindow());
   },
 
-  render: function() {
-    let regions = this.state.regions.map((region) => {
+  render() {
+    let regions = this.state.regions.map(region => {
       return (
         <li key={region.key}
             className={classNames("list-group-item", "region", this.isActive(region.key))} 

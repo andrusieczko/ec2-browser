@@ -1,5 +1,5 @@
 let TableHeader = React.createClass({
-  render: function() {
+  render() {
     let headers = this.props.columns.map((column, index) => {
       return (
         <th key={index}>{column.name}</th>

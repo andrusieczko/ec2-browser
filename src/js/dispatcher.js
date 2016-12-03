@@ -5,7 +5,7 @@ let _listeners = {};
 let Dispatcher = function() {};
 Dispatcher.prototype = {
   
-  register: function(actionName, callback) {
+  register(actionName, callback) {
     if (!_listeners[actionName]) {
       _listeners[actionName] = [];
     }
@@ -13,9 +13,9 @@ Dispatcher.prototype = {
     _listeners[actionName].push(callback);
   },
 
-  notifyAll: function(actionName, ...args) {
+  notifyAll(actionName, ...args) {
     let callbacks = _listeners[actionName] || [];
-    callbacks.forEach((callback) => {
+    callbacks.forEach(callback => {
       callback.call(callback, ...args);
     });
   }

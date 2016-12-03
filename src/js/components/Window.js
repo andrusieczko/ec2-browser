@@ -3,7 +3,7 @@ import PageContent from 'components/PageContent';
 
 let Window = React.createClass({
 
-  render: function() {
+  render() {
     return (
       <div className="pane-group">
         <div className="pane-sm sidebar">

@@ -2,7 +2,7 @@ import TableHeader from 'components/TableHeader';
 import TableContent from 'components/TableContent';
 
 let Table = React.createClass({
-  render: function() {
+  render() {
     return (
       <table>
         <TableHeader columns={this.props.columns} />

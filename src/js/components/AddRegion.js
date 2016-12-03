@@ -3,7 +3,7 @@ import ec2 from 'services/ec2';
 import dispatcher from 'dispatcher';
 
 let AddRegion = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       listVisible: false,
       data: [],
@@ -11,28 +11,27 @@ let AddRegion = React.createClass({
     };
   },
 
-  componentDidMount: function() {
-    dispatcher.register('regionAdded', function(region) {
+  componentDidMount() {
+    dispatcher.register('regionAdded', region => {
       this.setState({
         loading: false,
         listVisible: false
       });
-    }.bind(this));
+    });
   },
 
-  addRegion: function(e) {
+  addRegion(e) {
     if (this.state.data.length) {
       this.setState({
         listVisible: true
       });
     } else {
-      let component = this;
       this.setState({
         loading: true,
         listVisible: true
       });
-      ec2.fetchRegions().then(function(regions) {
-        component.setState({
+      ec2.fetchRegions().then(regions => {
+        this.setState({
           listVisible: true,
           data: regions,
           loading: false
@@ -41,7 +40,7 @@ let AddRegion = React.createClass({
     }
   },
 
-  render: function() {
+  render() {
     return (
       <span>
         <span className="add-button" onClick={this.addRegion}>+</span>

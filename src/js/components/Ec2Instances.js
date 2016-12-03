@@ -19,7 +19,7 @@ let Ec2Instances = React.createClass({
     {name: "Status", key: 'status'},
   ],
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       data: [],
       loading: true,
@@ -27,13 +27,13 @@ let Ec2Instances = React.createClass({
     };
   },
 
-  fetchInstances: function(region) {
+  fetchInstances(region) {
     this.setState({
       loading: true
     });
     
     let component = this;
-    ec2.fetchInstances(region).then((instances) => {
+    ec2.fetchInstances(region).then(instances => {
       component.setState({
         data: instances,
         loading: false
@@ -41,14 +41,14 @@ let Ec2Instances = React.createClass({
     });
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.fetchInstances(this.state.region);
-    dispatcher.register('region', function(region) {
+    dispatcher.register('region', region => {
       this.fetchInstances(region);
-    }.bind(this));
+    });
   },
 
-  changeRegion: function(e) {
+  changeRegion(e) {
     let region = e.target.value;
     this.setState({
       region: region,
@@ -57,7 +57,7 @@ let Ec2Instances = React.createClass({
     this.fetchInstances(region);
   },
 
-  render: function() {
+  render() {
     return (
       <div>
         <Table columns={this.columns} data={this.state.data} loading={this.state.loading} />
